@@ -1,0 +1,22 @@
+image and video editing
+=======================
+Various implementations of video and photo editing techniques which apply CUDA, Cheetah and MPI. Written for a problem set in Computer Science 205
+at Harvard School of Engineering and Applied Sciences.
+	
+	image editing:
+		1) sharpen:
+			- applies a sharpening kernel to the interior pixels of an image with a sharpening coefficient of epsilon = 0.005 using a 9 point stencil
+			- implemented with PyCUDA using 2D thread blocks and a 2D grid of blocks
+			- mean and variance computed on the CPU
+			- serial code and input photos provided by CS205 course staff (see documents in image_edit folder)
+		2) region_grow:
+			- applies a region growing algorithm to produce a black and white image that is clear and less noisy than using a simple dark filter
+			- algorithm begins by finding seed points; then determines whether each pixel of the image should be added to the regions that grow frome ach seed adn continues until no pixels were added in the last iteration
+			- serial code and input photos provided by CS205 course staff (see documents in image_edit folder)
+
+	video editing:
+		- allows for application of any filter to a video 
+		- the flexibility of the filter applied is implemented via Cheetah
+		- similar algorithm as used in sharpen.py (described above) to apply filter to each frame of the movie clip
+		- MPI used to access multiple GPU's in order to distribute application of filters to the various frames
+		- serial code, video clip, and filters provided by CS205 course staff (see video_edit folder)
